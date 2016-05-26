@@ -1,0 +1,11 @@
+dist: trusty
+env:
+        matrix:
+                - DEFCONFIG=qemu_mips64el_malta_defconfig
+                - DEFCONFIG=qemu_mips64_malta_defconfig
+                - DEFCONFIG=qemu_mipsel_malta_defconfig
+                - DEFCONFIG=qemu_mips_malta_defconfig
+before_install:
+        - sudo apt-get install -y bc
+script:
+        - travis_wait 120 ./test_defconfig.sh ${DEFCONFIG}
